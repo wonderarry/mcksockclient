@@ -4,11 +4,15 @@ import socket
 import clientmessage
 from time import sleep
 import threading
+import configparser
 
 
+conf = configparser.ConfigParser()
+conf.read('config.ini')
 
-HOST = "127.0.0.1"
-PORT = 65432
+HOST = conf.get('connection', 'host')
+PORT = int(conf.get('connection', 'port'))
+
 
 
 
