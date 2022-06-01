@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>350</width>
+    <width>250</width>
     <height>500</height>
    </rect>
   </property>
@@ -18,13 +18,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>350</width>
+    <width>250</width>
     <height>200</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>350</width>
+    <width>250</width>
     <height>500</height>
    </size>
   </property>
@@ -222,15 +222,26 @@
           </property>
           <item>
            <widget class="QPushButton" name="button_pin">
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>закрепить поверх</string>
+             <string>Закрепить</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="button_shrink">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>свернуть</string>
+             <string>Уменьшить</string>
             </property>
            </widget>
           </item>
@@ -336,6 +347,11 @@
                <property name="enabled">
                 <bool>false</bool>
                </property>
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
                <property name="text">
                 <string>Выберите номер кабинета из списка:</string>
                </property>
@@ -345,6 +361,12 @@
               <widget class="QComboBox" name="select_room">
                <property name="enabled">
                 <bool>false</bool>
+               </property>
+               <property name="font">
+                <font>
+                 <family>MS Shell Dlg 2</family>
+                 <pointsize>9</pointsize>
+                </font>
                </property>
                <property name="currentIndex">
                 <number>-1</number>
@@ -369,7 +391,8 @@
                 <bool>false</bool>
                </property>
                <property name="text">
-                <string>Выберите имя принимающего специалиста из списка:</string>
+                <string>Выберите имя принимающего
+ специалиста из списка:</string>
                </property>
               </widget>
              </item>
@@ -377,6 +400,12 @@
               <widget class="QComboBox" name="select_doctor">
                <property name="enabled">
                 <bool>false</bool>
+               </property>
+               <property name="font">
+                <font>
+                 <family>MS Shell Dlg 2</family>
+                 <pointsize>9</pointsize>
+                </font>
                </property>
               </widget>
              </item>
@@ -398,7 +427,8 @@
                 <bool>false</bool>
                </property>
                <property name="text">
-                <string>Выберите тип проводимого исследования из списка:</string>
+                <string>Выберите тип проводимого
+ исследования из списка:</string>
                </property>
               </widget>
              </item>
@@ -406,6 +436,11 @@
               <widget class="QComboBox" name="select_study">
                <property name="enabled">
                 <bool>false</bool>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
                </property>
               </widget>
              </item>
