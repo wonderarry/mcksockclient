@@ -75,20 +75,24 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
             self.centralwidget.resize(self.centralwidget.width(), 500)
             self.resize(self.width(), 500)
             self.is_shrunk = False
+            self.button_shrink.setText("Уменьшить")
         else:
             self.bottom_frame.hide()
             self.setMaximumHeight(200)
             self.centralwidget.resize(self.centralwidget.width(), 200)
             self.resize(self.width(), 200)
             self.is_shrunk = True
+            self.button_shrink.setText("Увеличить")
 
     def switch_pinned_state(self):
         if not self.is_pinned:
             self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+            self.button_pin.setText("Открепить")
             self.show()
             self.is_pinned = True
         else:
             self.setWindowFlags(self.windowFlags() & ~QtCore.Qt.WindowStaysOnTopHint)
+            self.button_pin.setText("Закрепить")
             self.show()
             self.is_pinned = False
 
