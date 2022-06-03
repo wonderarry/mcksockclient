@@ -14,6 +14,13 @@ HOST = conf.get('connection', 'host')
 PORT = int(conf.get('connection', 'port'))
 
 
+# Create icon for the application
+# Create minimize-to-tray kind of functionality
+# Create a more appealing design
+# 
+# 
+
+
 class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def closeEvent(self, event):
