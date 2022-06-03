@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QtCore.QSize(250, 200))
+        MainWindow.setMinimumSize(QtCore.QSize(250, 500))
         MainWindow.setMaximumSize(QtCore.QSize(250, 500))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -209,7 +209,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Отключен"))
         self.button_occupied.setText(_translate("MainWindow", "Свободно"))
         self.button_empty.setText(_translate("MainWindow", "Занято"))
         self.button_noentry.setText(_translate("MainWindow", "Нет приема"))

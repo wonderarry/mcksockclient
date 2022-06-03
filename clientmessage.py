@@ -46,8 +46,9 @@ class Message:
         self.write_request('post_new_state', indices)
         self.read_request()
         request_result = self.request.get('result')
+        request_code_value = self.request.get('code_value')
         self.reset_reading_state()
-        return request_result
+        return (request_result, request_code_value)
 
 # Message processing section
 
