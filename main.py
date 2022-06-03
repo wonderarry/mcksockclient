@@ -28,12 +28,17 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
         event.accept()
 
 
-    def termination_message(self, given_text):
+    def termination_message(self, given_text = "Сервер перестал отвечать на запросы. По закрытии этого окна программа закроется"):
+        self.kill_pinging_thread()
         exit_message = QtWidgets.QMessageBox(
-            icon=3, text=given_text)
+            icon=3)
+        exit_message.setText("Сервер перестал отвечать на запросы. По закрытии этого окна программа закроется")
         exit_message.setWindowTitle("Сообщение об ошибке")
+        if given_text:
+            exit_message.setText(given_text)
         exit_message.setStandardButtons(QtWidgets.QMessageBox.Ok)
         exit_message.exec_()
+        sleep(0.2)
         self.close()
 
     def start_socket(self):
@@ -60,6 +65,8 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
         except ConnectionRefusedError:
             self.termination_message(
                 "Сервер в данный момент не работает. По закрытии этого окна программа закроется")
+        except Exception:
+            self.termination_message()
 
     @staticmethod
     def fill_values_combo_box(object, data):
@@ -85,14 +92,31 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def ping_thread_function(self, imprint):
         while True:
-            
-            for _ in range(120):
+            for _ in range(12):
                 if self.kill_flag:
                     break
                 sleep(1)
             if self.kill_flag:
                 break
-            self.change_room_status(imprint[-1], True)
+            try:
+                self.message.get_field_values()
+            except ConnectionResetError:
+                self.message.socket.close()
+                self.termination_message(
+                    "Сервер перестал отвечать на запросы. По закрытии этого окна программа закроется")
+                break
+            except ConnectionRefusedError:
+                self.message.socket.close()
+                self.termination_message(
+                    "Сервер в данный момент не работает. По закрытии этого окна программа закроется")
+                break
+            except Exception:
+                self.message.socket.close()
+                self.termination_message(
+                    "Сервер в данный момент не работает. По закрытии этого окна программа закроется")
+                break
+            
+    
 
     def start_pinging_thread(self):
         if self.ping_thread is not None:
@@ -104,7 +128,7 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def kill_pinging_thread(self):
         if self.ping_thread is not None:
             self.kill_flag = True
-            self.ping_thread.join()
+            #self.ping_thread.join()
             self.ping_thread = None
             self.kill_flag = False
 
@@ -126,42 +150,74 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     
 
-    def change_room_status(self, to_which, is_ping=False):
-        try:
-            if not is_ping:
-                room = self.select_room.currentIndex()
-                doctor = self.select_doctor.currentIndex()
-                study = self.select_study.currentIndex()
-            else:
-                room, doctor, study = self.data_imprint[:-1]
-            try:   
-                old_imprint = self.data_imprint.copy()
-            except NameError:
-                old_imprint = []
-            self.data_imprint = [room, doctor, study, to_which]
+    # def change_room_status(self, to_which, is_ping=False):
+    #     try:
+    #         if not is_ping:
+    #             self.kill_pinging_thread()
+    #             room = self.select_room.currentIndex()
+    #             doctor = self.select_doctor.currentIndex()
+    #             study = self.select_study.currentIndex()
+    #         else:
+    #             if is_ping:
+    #                 if self.kill_flag:
+    #                     return
+    #             room, doctor, study = self.data_imprint[:-1]
+    #         try:   
+    #             old_imprint = self.data_imprint.copy()
+    #         except NameError:
+    #             old_imprint = []
+    #         self.data_imprint = [room, doctor, study, to_which]
 
-            result, code_value = self.message.change_room_status(self.data_imprint)
+    #         result, code_value = self.message.change_room_status(self.data_imprint)
+
+    #         if code_value == 0:
+    #             color = QtCore.Qt.green
+                
+    #             self.start_pinging_thread()
+    #             self.setWindowTitle(self.select_room.itemText(self.data_imprint[0]))
+    #         else:
+    #             color = QtCore.Qt.red
+    #             if old_imprint != []:
+    #                 self.data_imprint = old_imprint
+    #                 self.start_pinging_thread()
+    #             else:
+    #                 self.data_imprint = []
+    #         if not is_ping:
+    #             self.display_animated_label(result, color)
+    #     except ConnectionResetError:
+    #         self.termination_message(
+    #             "Сервер перестал отвечать на запросы. По закрытии этого окна программа закроется")
+    #     except ConnectionRefusedError:
+    #         self.termination_message(
+    #             "Сервер в данный момент не работает. По закрытии этого окна программа закроется")
+    #     except Exception:
+    #         self.termination_message()
+
+    def change_room_status(self, to_which):
+        try:   
+            room = self.select_room.currentIndex()
+            doctor = self.select_doctor.currentIndex()
+            study = self.select_study.currentIndex()
+
+            result, code_value = self.message.change_room_status([room, doctor, study, to_which])
 
             if code_value == 0:
                 color = QtCore.Qt.green
-                
+                self.setWindowTitle(self.select_room.itemText(room))
                 self.start_pinging_thread()
-                self.setWindowTitle(self.select_room.itemText(self.data_imprint[0]))
             else:
                 color = QtCore.Qt.red
-                if old_imprint != []:
-                    self.data_imprint = old_imprint
-                    self.start_pinging_thread()
-                else:
-                    self.data_imprint = []
-            if not is_ping:
-                self.display_animated_label(result, color)
+            self.display_animated_label(result, color)
+
+
         except ConnectionResetError:
             self.termination_message(
                 "Сервер перестал отвечать на запросы. По закрытии этого окна программа закроется")
         except ConnectionRefusedError:
             self.termination_message(
                 "Сервер в данный момент не работает. По закрытии этого окна программа закроется")
+        except Exception:
+            self.termination_message()
 
     def switch_shrink_window(self):
         #diff = 300
