@@ -16,13 +16,17 @@ PORT = int(conf.get('connection', 'port'))
 
 class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
+    def closeEvent(self, event):
+        self.kill_pinging_thread()
+        event.accept()
+
+
     def termination_message(self, given_text):
         exit_message = QtWidgets.QMessageBox(
             icon=3, text=given_text)
         exit_message.setWindowTitle("Сообщение об ошибке")
         exit_message.setStandardButtons(QtWidgets.QMessageBox.Ok)
         exit_message.exec_()
-        self.kill_pinging_thread()
         self.close()
 
     def start_socket(self):
