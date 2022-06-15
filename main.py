@@ -221,20 +221,23 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def switch_shrink_window(self):
         #diff = 300
+        
         if self.is_shrunk:
+            newsize = 460
             self.bottom_frame.show()
-            self.setMaximumHeight(500)
-            self.setMinimumHeight(500)
-            self.centralwidget.resize(self.centralwidget.width(), 500)
-            self.resize(self.width(), 500)
+            self.setMaximumHeight(newsize)
+            self.setMinimumHeight(newsize)
+            self.centralwidget.resize(self.centralwidget.width(), newsize)
+            self.resize(self.width(), newsize)
             self.is_shrunk = False
             self.button_shrink.setText("Уменьшить")
         else:
+            newsize = 160
             self.bottom_frame.hide()
-            self.setMinimumHeight(200)
-            self.setMaximumHeight(200)
-            self.centralwidget.resize(self.centralwidget.width(), 200)
-            self.resize(self.width(), 200)
+            self.setMinimumHeight(newsize)
+            self.setMaximumHeight(newsize)
+            self.centralwidget.resize(self.centralwidget.width(), newsize)
+            self.resize(self.width(), newsize)
             self.is_shrunk = True
             self.button_shrink.setText("Увеличить")
 
@@ -268,6 +271,7 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.button_occupied.clicked.connect(
             lambda: self.change_room_status(1))
         self.button_empty.clicked.connect(lambda: self.change_room_status(2))
+        self.button_await.clicked.connect(lambda: self.change_room_status(3))
         self.button_pin.clicked.connect(self.switch_pinned_state)
         self.button_shrink.clicked.connect(self.switch_shrink_window)
 
