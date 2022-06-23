@@ -64,6 +64,19 @@ class Ui_MainWindow(object):
         font.setFamily("Segoe UI")
         font.setPointSize(11)
         self.button_await.setFont(font)
+        self.button_await.setStyleSheet("QPushButton:enabled{\n"
+"background-color: rgb(220,220,0);\n"
+"border-style:double;\n"
+"border-radius:4px;\n"
+"border-width:2px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"background-color: rgb(190,190,0);\n"
+"border-style:double;\n"
+"border-radius:4px;\n"
+"border-width:2px;\n"
+"}\n"
+"")
         self.button_await.setObjectName("button_await")
         self.gridLayout.addWidget(self.button_await, 0, 0, 1, 1)
         self.button_noentry = QtWidgets.QPushButton(self.frame_states)
@@ -79,6 +92,20 @@ class Ui_MainWindow(object):
         font.setFamily("Segoe UI")
         font.setPointSize(11)
         self.button_noentry.setFont(font)
+        self.button_noentry.setStyleSheet("\n"
+"QPushButton:enabled{\n"
+"background-color: rgb(200,200,200);\n"
+"border-style:double;\n"
+"border-radius:4px;\n"
+"border-width:2px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"background-color: rgb(170,170,170);\n"
+"border-style:double;\n"
+"border-radius:4px;\n"
+"border-width:2px;\n"
+"}\n"
+"")
         self.button_noentry.setObjectName("button_noentry")
         self.gridLayout.addWidget(self.button_noentry, 1, 0, 1, 1)
         self.button_empty = QtWidgets.QPushButton(self.frame_states)
@@ -94,6 +121,18 @@ class Ui_MainWindow(object):
         font.setFamily("Segoe UI")
         font.setPointSize(11)
         self.button_empty.setFont(font)
+        self.button_empty.setStyleSheet("QPushButton:enabled{\n"
+"background-color: rgb(80,220,80);\n"
+"border-style:double;\n"
+"border-radius:4px;\n"
+"border-width:2px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"background-color: rgb(80,190,80);\n"
+"border-style:double;\n"
+"border-radius:4px;\n"
+"border-width:2px;\n"
+"}")
         self.button_empty.setObjectName("button_empty")
         self.gridLayout.addWidget(self.button_empty, 0, 1, 1, 1)
         self.button_occupied = QtWidgets.QPushButton(self.frame_states)
@@ -109,6 +148,19 @@ class Ui_MainWindow(object):
         font.setFamily("Segoe UI")
         font.setPointSize(11)
         self.button_occupied.setFont(font)
+        self.button_occupied.setStyleSheet("QPushButton:enabled{\n"
+"background-color: rgb(220,80,80);\n"
+"border-style:double;\n"
+"border-radius:4px;\n"
+"border-width:2px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"background-color: rgb(190,80,80);\n"
+"border-style:double;\n"
+"border-radius:4px;\n"
+"border-width:2px;\n"
+"}\n"
+"")
         self.button_occupied.setObjectName("button_occupied")
         self.gridLayout.addWidget(self.button_occupied, 1, 1, 1, 1)
         self.verticalLayout_8.addWidget(self.frame_states)
@@ -138,7 +190,7 @@ class Ui_MainWindow(object):
         self.status_label.setMinimumSize(QtCore.QSize(0, 20))
         self.status_label.setMaximumSize(QtCore.QSize(16777215, 20))
         font = QtGui.QFont()
-        font.setPointSize(7)
+        font.setPointSize(9)
         self.status_label.setFont(font)
         self.status_label.setText("")
         self.status_label.setAlignment(QtCore.Qt.AlignCenter)

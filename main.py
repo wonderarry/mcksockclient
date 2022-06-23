@@ -77,6 +77,7 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.button_empty.setEnabled(True)
         self.button_occupied.setEnabled(True)
         self.button_noentry.setEnabled(True)
+        self.button_await.setEnabled(True)
 
         self.label_room.setEnabled(True)
         self.select_room.setEnabled(True)

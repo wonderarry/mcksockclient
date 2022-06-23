@@ -149,6 +149,21 @@
               <pointsize>11</pointsize>
              </font>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton:enabled{
+background-color: rgb(220,220,0);
+border-style:double;
+border-radius:4px;
+border-width:2px;
+}
+QPushButton:pressed{
+background-color: rgb(190,190,0);
+border-style:double;
+border-radius:4px;
+border-width:2px;
+}
+</string>
+            </property>
             <property name="text">
              <string>Ожидайте 
 приглашения</string>
@@ -184,6 +199,22 @@
               <pointsize>11</pointsize>
              </font>
             </property>
+            <property name="styleSheet">
+             <string notr="true">
+QPushButton:enabled{
+background-color: rgb(200,200,200);
+border-style:double;
+border-radius:4px;
+border-width:2px;
+}
+QPushButton:pressed{
+background-color: rgb(170,170,170);
+border-style:double;
+border-radius:4px;
+border-width:2px;
+}
+</string>
+            </property>
             <property name="text">
              <string>Нет приема</string>
             </property>
@@ -218,6 +249,20 @@
               <pointsize>11</pointsize>
              </font>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton:enabled{
+background-color: rgb(80,220,80);
+border-style:double;
+border-radius:4px;
+border-width:2px;
+}
+QPushButton:pressed{
+background-color: rgb(80,190,80);
+border-style:double;
+border-radius:4px;
+border-width:2px;
+}</string>
+            </property>
             <property name="text">
              <string>Свободно</string>
             </property>
@@ -251,6 +296,21 @@
               <family>Segoe UI</family>
               <pointsize>11</pointsize>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton:enabled{
+background-color: rgb(220,80,80);
+border-style:double;
+border-radius:4px;
+border-width:2px;
+}
+QPushButton:pressed{
+background-color: rgb(190,80,80);
+border-style:double;
+border-radius:4px;
+border-width:2px;
+}
+</string>
             </property>
             <property name="text">
              <string>Занято</string>
@@ -334,7 +394,7 @@
          </property>
          <property name="font">
           <font>
-           <pointsize>7</pointsize>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="text">
