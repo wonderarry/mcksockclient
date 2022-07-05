@@ -24,6 +24,7 @@ PORT = int(conf.get('connection', 'port'))
 class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def closeEvent(self, event):
+        self.change_room_status(0)
         self.kill_pinging_thread()
         event.accept()
 
@@ -279,8 +280,11 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
 def main():
     app = QtWidgets.QApplication([])
-
+    splashscreen = QtWidgets.QSplashScreen(QtGui.QPixmap('splashscreen.png'))
+    splashscreen.show()
     window = Clientapp_Ui()
+    sleep(3)
+    splashscreen.hide()
     window.show()
     app.exec_()
 

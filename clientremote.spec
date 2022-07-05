@@ -17,6 +17,7 @@ a = Analysis(['main.py'],
              win_private_assemblies=False,
              cipher=block_cipher,
              noarchive=False)
+     
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 
@@ -40,3 +41,4 @@ exe = EXE(pyz,
           entitlements_file=None )
 import shutil
 shutil.copyfile('config.ini', '{0}/config.ini'.format(DISTPATH))
+shutil.copyfile('splashscreen.png', '{0}/splashscreen.png'.format(DISTPATH))
