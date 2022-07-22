@@ -145,7 +145,7 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.label_animation.setStartValue(QtGui.QColor(color))
         self.label_animation.setEndValue(QtGui.QColor(0, 0, 0))
 
-        self.label_animation.setDuration(1000)
+        self.label_animation.setDuration(3000)
 
         self.status_label.show()
         self.label_animation.start()
@@ -202,10 +202,16 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
             study = self.select_study.currentIndex()
 
             result, code_value = self.message.change_room_status([room, doctor, study, to_which])
-
+            rename_list = ['нет приема', 'занято', 'свободно', 'ожидайте']
+            button_list = [self.button_noentry, self.button_occupied, self.button_empty, self.button_await]
             if code_value == 0:
                 color = QtCore.Qt.green
-                self.setWindowTitle(self.select_room.itemText(room))
+                self.setWindowTitle(self.select_room.itemText(room) + ' - ' + rename_list[to_which])
+                for index, item in enumerate(button_list):
+                    icon = QtGui.QIcon()
+                    if index == to_which:
+                        icon = QtGui.QIcon('checkmark.png')
+                    item.setIcon(icon)
                 self.start_pinging_thread()
             else:
                 color = QtCore.Qt.red
@@ -245,7 +251,7 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def switch_pinned_state(self):
         if not self.is_pinned:
-            self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+            self.setWindowFlags(self.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
             self.button_pin.setText("Открепить")
             self.show()
             self.is_pinned = True
@@ -258,7 +264,7 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def __init__(self):
         super().__init__()
-
+        self.setWindowFlags(self.windowFlags() & ~QtCore.Qt.WindowMaximizeButtonHint)
         self.is_shrunk = False
         self.is_pinned = False
 
@@ -285,6 +291,9 @@ def main():
     window = Clientapp_Ui()
     sleep(3)
     splashscreen.hide()
+    window.setWindowFlags( QtCore.Qt.CustomizeWindowHint |
+        QtCore.Qt.WindowTitleHint |
+        QtCore.Qt.WindowCloseButtonHint)
     window.show()
     app.exec_()
 

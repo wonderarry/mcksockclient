@@ -42,3 +42,4 @@ exe = EXE(pyz,
 import shutil
 shutil.copyfile('config.ini', '{0}/config.ini'.format(DISTPATH))
 shutil.copyfile('splashscreen.png', '{0}/splashscreen.png'.format(DISTPATH))
+shutil.copyfile('checkmark.png', '{0}/checkmark.png'.format(DISTPATH))

@@ -62,7 +62,7 @@ class Ui_MainWindow(object):
         self.button_await.setMaximumSize(QtCore.QSize(105, 45))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
-        font.setPointSize(11)
+        font.setPointSize(10)
         self.button_await.setFont(font)
         self.button_await.setStyleSheet("QPushButton:enabled{\n"
 "background-color: rgb(220,220,0);\n"
@@ -90,7 +90,7 @@ class Ui_MainWindow(object):
         self.button_noentry.setMaximumSize(QtCore.QSize(105, 45))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
-        font.setPointSize(11)
+        font.setPointSize(10)
         self.button_noentry.setFont(font)
         self.button_noentry.setStyleSheet("\n"
 "QPushButton:enabled{\n"
@@ -119,7 +119,7 @@ class Ui_MainWindow(object):
         self.button_empty.setMaximumSize(QtCore.QSize(105, 45))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
-        font.setPointSize(11)
+        font.setPointSize(10)
         self.button_empty.setFont(font)
         self.button_empty.setStyleSheet("QPushButton:enabled{\n"
 "background-color: rgb(80,220,80);\n"
@@ -146,7 +146,7 @@ class Ui_MainWindow(object):
         self.button_occupied.setMaximumSize(QtCore.QSize(105, 45))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
-        font.setPointSize(11)
+        font.setPointSize(10)
         self.button_occupied.setFont(font)
         self.button_occupied.setStyleSheet("QPushButton:enabled{\n"
 "background-color: rgb(220,80,80);\n"

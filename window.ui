@@ -146,7 +146,7 @@
             <property name="font">
              <font>
               <family>Segoe UI</family>
-              <pointsize>11</pointsize>
+              <pointsize>10</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -196,7 +196,7 @@ border-width:2px;
             <property name="font">
              <font>
               <family>Segoe UI</family>
-              <pointsize>11</pointsize>
+              <pointsize>10</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -246,7 +246,7 @@ border-width:2px;
             <property name="font">
              <font>
               <family>Segoe UI</family>
-              <pointsize>11</pointsize>
+              <pointsize>10</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -294,7 +294,7 @@ border-width:2px;
             <property name="font">
              <font>
               <family>Segoe UI</family>
-              <pointsize>11</pointsize>
+              <pointsize>10</pointsize>
              </font>
             </property>
             <property name="styleSheet">
