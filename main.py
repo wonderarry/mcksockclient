@@ -202,11 +202,11 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
             study = self.select_study.currentIndex()
 
             result, code_value = self.message.change_room_status([room, doctor, study, to_which])
-            rename_list = ['нет приема', 'занято', 'свободно', 'ожидайте']
+            #rename_list = ['нет приема', 'занято', 'свободно', 'ожидайте']
             button_list = [self.button_noentry, self.button_occupied, self.button_empty, self.button_await]
             if code_value == 0:
                 color = QtCore.Qt.green
-                self.setWindowTitle(self.select_room.itemText(room) + ' - ' + rename_list[to_which])
+                self.setWindowTitle(self.select_room.itemText(room)) #+ ' - ' + rename_list[to_which])
                 for index, item in enumerate(button_list):
                     icon = QtGui.QIcon()
                     if index == to_which:
@@ -293,7 +293,9 @@ def main():
     splashscreen.hide()
     window.setWindowFlags( QtCore.Qt.CustomizeWindowHint |
         QtCore.Qt.WindowTitleHint |
-        QtCore.Qt.WindowCloseButtonHint)
+        QtCore.Qt.WindowCloseButtonHint |
+        QtCore.Qt.WindowMinimizeButtonHint 
+        & ~QtCore.Qt.WindowMaximizeButtonHint)
     window.show()
     app.exec_()
 
