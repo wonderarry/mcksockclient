@@ -6,6 +6,7 @@ from time import sleep
 import threading
 import configparser
 
+APP_VERSION = 10
 
 conf = configparser.ConfigParser()
 conf.read('config.ini')
@@ -24,7 +25,8 @@ PORT = int(conf.get('connection', 'port'))
 class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def closeEvent(self, event):
-        self.change_room_status(0)
+        if not self.instant_kill_flag:
+            self.change_room_status(0)
         self.kill_pinging_thread()
         event.accept()
 
@@ -48,9 +50,13 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.connect(host_addr)
             sock.setblocking(True)
-            self.message = clientmessage.Message(sock, 4096)
+            self.message = clientmessage.Message(sock, 4096, APP_VERSION)
             obtained_dict = self.message.get_field_values()
-        
+            print('here!!')
+            if obtained_dict.get('code_value') != 0:
+                self.instant_kill_flag = 1
+                self.termination_message(obtained_dict.get('result'))
+                return
 
             Clientapp_Ui.fill_values_combo_box(
                 self.select_room, obtained_dict.get('room_values'))
@@ -267,6 +273,8 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.setWindowFlags(self.windowFlags() & ~QtCore.Qt.WindowMaximizeButtonHint)
         self.is_shrunk = False
         self.is_pinned = False
+
+        self.instant_kill_flag = 0
 
         self.ping_thread = None
         self.kill_flag = False

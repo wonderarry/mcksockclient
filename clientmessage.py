@@ -21,7 +21,8 @@ class Message:
         return json.dumps(obj=object, ensure_ascii=False).encode(encoding)
 
 
-    def __init__(self, socket: socket.socket, package_size: int):
+    def __init__(self, socket: socket.socket, package_size: int, version_name):
+        self.version_name = version_name
         self.socket = socket
         self.package_size = package_size
         self.reset_reading_state()
@@ -86,7 +87,8 @@ class Message:
     def compose_request(self, request_action : str, request_data=[] ) -> dict:
         if request_action == 'get_field_values':
             content = {
-                'action': 'get_field_values'
+                'action': 'get_field_values',
+                'version': self.version_name
             }
         elif request_action == 'post_new_state':
             if request_data == []:
