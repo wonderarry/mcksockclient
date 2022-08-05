@@ -6,7 +6,7 @@ from time import sleep
 import threading
 import configparser
 
-APP_VERSION = 10
+APP_VERSION = 11
 
 conf = configparser.ConfigParser()
 conf.read('config.ini')
@@ -136,6 +136,7 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def kill_pinging_thread(self):
         if self.ping_thread is not None:
             self.kill_flag = True
+            sleep(1.5)
             #self.ping_thread.join()
             self.ping_thread = None
             self.kill_flag = False
@@ -218,7 +219,9 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
                     if index == to_which:
                         icon = QtGui.QIcon('checkmark.png')
                     item.setIcon(icon)
-                self.start_pinging_thread()
+                if not self.was_pinging_thread_ever_active:
+                    self.start_pinging_thread()
+                self.was_pinging_thread_ever_active = True
             else:
                 color = QtCore.Qt.red
             self.display_animated_label(result, color)
@@ -270,6 +273,7 @@ class Clientapp_Ui(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def __init__(self):
         super().__init__()
+        self.was_pinging_thread_ever_active = False
         self.setWindowFlags(self.windowFlags() & ~QtCore.Qt.WindowMaximizeButtonHint)
         self.is_shrunk = False
         self.is_pinned = False
